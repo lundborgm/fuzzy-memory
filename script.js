@@ -9,7 +9,9 @@ const cards = [
     { color: "#ce7a7a", text: "hejsan" }
 ];
 
-const game = document.querySelector(".memory-container");
+const shuffledCards = [...cards, ...cards];
+
+const game = document.querySelector(".memory__container");
 
 
 const stringToHTML = str => {
@@ -26,13 +28,12 @@ const createCard = (color, text) => {
   
 
 const generateCards = () => {
-    cards.forEach(card => {
+    shuffledCards.forEach(card => {
         const element = createCard(card.color, card.text);
         game.appendChild(stringToHTML(element));
-
-        console.log(card);
     });
 };
+
 
 // Function that shuffles the cards array
 function shuffle(array) {
@@ -53,12 +54,11 @@ function shuffle(array) {
 }
 
 
-const init = () => {
-    shuffle(cards);
+const start = () => {
+    shuffle(shuffledCards);
     generateCards();
     const elements = document.querySelectorAll(".memory__cards");
-
 }
 
 
-init();
+start();
