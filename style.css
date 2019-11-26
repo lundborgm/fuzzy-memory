@@ -1,0 +1,13 @@
+:root {
+    --main-bg-color: rgb(247, 235, 221);
+    --title-color: rgb(245, 101, 76);
+}
+
+body {
+    box-sizing: border-box;
+    background-color: var(--main-bg-color);
+    color: var(--title-color);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+
