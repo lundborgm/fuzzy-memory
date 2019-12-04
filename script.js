@@ -1,17 +1,20 @@
 const cards = [
-    { color: "#e3a8f5", text: "hej" },
-    { color: "#f5a8c2", text: "hejhej" },
-    { color: "#91dbbc", text: "tja" },
-    { color: "#dadb91", text: "hola" },
-    { color: "#91abdb", text: "hallååå" },
-    { color: "#dbb291", text: "tjena" },
-    { color: "#a6db8d", text: "ciao" },
-    { color: "#ce7a7a", text: "hejsan" }
+    { id: 1, image: 'img/bersa.png' },
+    { id: 2, image: 'img/herbarium.png' },
+    { id: 3, image: 'img/notturno.png' },
+    { id: 4, image: 'img/randigbanan.png' },
+    { id: 5, image: 'img/rasymatto.png' },
+    { id: 6, image: 'img/siirtolapuutarha.png' },
+    { id: 7, image: 'img/unikko.png' },
+    { id: 8, image: 'img/vegetabletree.png' }
 ];
 
-const shuffledCards = [...cards, ...cards];
+//duplicate my cards array
+const duplicateCards = [...cards, ...cards];
 
-const game = document.querySelector(".memory__container");
+const game = document.querySelector(".memory-container");
+
+// const image = document.querySelector('img');
 
 
 const stringToHTML = str => {
@@ -20,19 +23,23 @@ const stringToHTML = str => {
         return div.firstChild;
 };
 
-const createCard = (color, text) => {
-    return `<div class="memory__cards" data-color=${color} style="background-color:${color}">
-        <p>${text}</p>
-        </div>`;
+const createCard = (id, image) => {
+    return `<div class="memory-cards" data-id=${id} style="background-color: grey">
+                <img src=${image} alt="">
+            </div>`;
 };
-  
 
 const generateCards = () => {
-    shuffledCards.forEach(card => {
-        const element = createCard(card.color, card.text);
+    duplicateCards.forEach(card => {
+        const element = createCard(card.id, card.image);
         game.appendChild(stringToHTML(element));
+
+        console.log(element);
+        
     });
 };
+
+
 
 
 // Function that shuffles the cards array
@@ -54,10 +61,16 @@ function shuffle(array) {
 }
 
 
+// ??? flip cards?
+function openCard() {
+    console.log('hi');
+}
+
 const start = () => {
-    shuffle(shuffledCards);
+    shuffle(duplicateCards);
     generateCards();
-    const elements = document.querySelectorAll(".memory__cards");
+    const elements = document.querySelectorAll(".memory-cards");
+    addEventListener('click', openCard);
 }
 
 

@@ -5,11 +5,22 @@
 
 body {
     box-sizing: border-box;
-    color: var(--title-color);
+    /* color: var(--title-color); */
     font-family: 'Futura';
     font-size: 16px;
     color: indigo;
 }
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* visibility: hidden; */
+}
+/* 
+img.open {
+    visibility: visible;
+} */
 
 h1 {
     position: absolute;
@@ -32,26 +43,25 @@ button {
     flex-direction: column;
     width: 100%;
     height: 100vh;
-    background-color: var(--main-bg-color);
+    /* background-color: var(--main-bg-color); */
 }
 
-.memory__container {
+.memory-container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     background-color: #fff;
-    box-shadow: -1px 3px 13px 4px #dbdbdb;
     width: 80%;
     height: 70vh;
 }
 
-.memory__cards {
+.memory-cards {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10px;
     padding: 5px;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
 }
