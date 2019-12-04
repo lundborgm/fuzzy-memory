@@ -9,12 +9,16 @@ const cards = [
     { id: 8, image: 'img/vegetabletree.png' }
 ];
 
-//duplicate cards array
+// Duplicate cards array
 const duplicateCards = [...cards, ...cards];
 
 const memoryGame = document.querySelector(".memory-game");
 
 
+// Function that flips the cards
+function flipCard() {
+    this.classList.toggle('flip');
+}
 
 
 const stringToHTML = str => {
@@ -65,7 +69,12 @@ function shuffle(array) {
 const start = () => {
     shuffle(duplicateCards);
     generateCards();
-    const elements = document.querySelectorAll(".memory-cards");
+    const memoryCards = document.querySelectorAll(".memory-card");
+
+    memoryCards.forEach(memoryCard => {
+        memoryCard.addEventListener("click", flipCard);
+      });
+
 }
 
 
