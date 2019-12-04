@@ -9,12 +9,12 @@ const cards = [
     { id: 8, image: 'img/vegetabletree.png' }
 ];
 
-//duplicate my cards array
+//duplicate cards array
 const duplicateCards = [...cards, ...cards];
 
-const game = document.querySelector(".memory-container");
+const memoryGame = document.querySelector(".memory-game");
 
-// const image = document.querySelector('img');
+
 
 
 const stringToHTML = str => {
@@ -24,15 +24,16 @@ const stringToHTML = str => {
 };
 
 const createCard = (id, image) => {
-    return `<div class="memory-cards" data-id=${id} style="background-color: grey">
-                <img src=${image} alt="">
+    return `<div class="memory-card" data-id=${id}>
+                <img class="front" src=${image} alt="">
+                <img class="back" src="" alt="">
             </div>`;
 };
 
 const generateCards = () => {
     duplicateCards.forEach(card => {
         const element = createCard(card.id, card.image);
-        game.appendChild(stringToHTML(element));
+        memoryGame.appendChild(stringToHTML(element));
 
         console.log(element);
         
@@ -61,16 +62,10 @@ function shuffle(array) {
 }
 
 
-// ??? flip cards?
-function openCard() {
-    console.log('hi');
-}
-
 const start = () => {
     shuffle(duplicateCards);
     generateCards();
     const elements = document.querySelectorAll(".memory-cards");
-    addEventListener('click', openCard);
 }
 
 
