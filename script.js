@@ -13,8 +13,12 @@ const cards = [
 const duplicateCards = [...cards, ...cards];
 
 const memoryGame = document.querySelector(".memory-game");
-const button = document.querySelector("button");
+const startScreen = document.querySelector(".start-screen");
+const startButton = document.querySelector(".start-button");
+const restartBtn = document.querySelector(".start-over");
 const clickCounter = document.querySelector(".click-counter");
+
+console.log(startScreen)
 
 let count = 0;
 let isFlipped = false;
@@ -123,6 +127,12 @@ start();
 
 
 
-button.addEventListener("click", function() {
- console.log('hello');
-});
+
+function startGame(event) {
+    startScreen.classList.toggle('fadeOut');
+  
+
+}
+
+startButton.addEventListener('click', startGame);
+
