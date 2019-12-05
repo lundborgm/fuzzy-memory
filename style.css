@@ -26,6 +26,11 @@ ul {
 
 .memory-container {
     display: flex;
+    
+}
+
+.blur {
+    filter: blur(8px);
 }
 
 .memory-game {
@@ -47,7 +52,7 @@ ul {
     transform: scale(1);
     transform-style: preserve-3d;
     transition: transform 1s;
-    cursor: help;
+    cursor: pointer;
 }
 
 /* Scale card when clicked */
@@ -98,7 +103,7 @@ ul {
     flex-direction: column;
     width: 100%; 
     height: 100%; 
-    background-color: rgba(0, 0, 0, 0.473);
+    background-color: rgba(0, 0, 0, 0.171);
     z-index: 1;
     visibility: visible;
     opacity: 1;

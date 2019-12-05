@@ -12,6 +12,7 @@ const cards = [
 // Duplicate cards array
 const duplicateCards = [...cards, ...cards];
 
+const memoryContainer = document.querySelector(".memory-container");
 const memoryGame = document.querySelector(".memory-game");
 const startScreen = document.querySelector(".start-screen");
 const startButton = document.querySelector(".start-button");
@@ -40,7 +41,6 @@ function countTimer() {
 
 // Function that flips the cards
 function flipCard() {
-
     if (lockGame) return;
     if (this === firstCard) return; 
 
@@ -51,31 +51,54 @@ function flipCard() {
     
         isFlipped = true;
         firstCard = this;
+        
     } else {
         // Second click
     
-        isFlipped = false;
         secondCard = this;
- 
-        if(firstCard.dataset.id === secondCard.dataset.id) {
-            // If the cards id match remove flipCard-function
 
-            firstCard.removeEventListener('click', flipCard);
-            secondCard.removeEventListener('click', flipCard);
-        } else {
-            // If there's no match, remove 'flip'
-
-            lockGame = true; 
-
-            setTimeout(() => {
-                firstCard.classList.remove('flip');
-                secondCard.classList.remove('flip');
-                lockGame = false; 
-            }, 1500);
-        }
+        checkPair();
     }
-
 }
+
+// Check if cards id match
+function checkPair() {
+        if(firstCard.dataset.id === secondCard.dataset.id) {
+            disableCards();
+
+        } else {
+            unflipCards();
+        }
+}
+
+ // If there's a match remove click-function
+function disableCards() {
+     firstCard.removeEventListener('click', flipCard);
+     secondCard.removeEventListener('click', flipCard);
+
+     resetGame();
+}
+
+ // If there's no match, remove 'flip'
+function unflipCards() {
+    lockGame = true; 
+
+    setTimeout(() => {
+        firstCard.classList.remove('flip');
+        secondCard.classList.remove('flip');
+
+        resetGame();
+
+    }, 1500);
+}
+
+function resetGame() {
+    isFlipped = false;
+    lockGame = false;
+    firstCard = null;
+    secondCard = null;
+}
+
 
 const stringToHTML = str => {
     const div = document.createElement("div");
@@ -99,7 +122,7 @@ const generateCards = () => {
 };
 
 
-// Function that shuffles the cards array
+// Shuffles array
 const shuffle = array => {
     let counter = array.length, temp, index;
 
@@ -134,14 +157,15 @@ const start = () => {
         memoryCard.addEventListener("click", flipCard);
     });
 
-    setInterval(countTimer, 100);
 }
+
+start();
 
 const startGame = () => {
     startScreen.classList.add('fadeOut');
-    start();
+    memoryContainer.classList.remove('blur');
+    setInterval(countTimer, 100);
 }
-
 
 startButton.addEventListener('click', startGame);
 
