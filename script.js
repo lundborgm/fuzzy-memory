@@ -11,6 +11,7 @@ const cards = [
 
 // Duplicate cards array
 const duplicateCards = [...cards, ...cards];
+let openedCards = [];
 
 const memoryContainer = document.querySelector(".memory-container");
 const memoryGame = document.querySelector(".memory-game");
@@ -51,7 +52,7 @@ function flipCard() {
     
         isFlipped = true;
         firstCard = this;
-        
+
     } else {
         // Second click
     
@@ -76,6 +77,7 @@ function disableCards() {
      firstCard.removeEventListener('click', flipCard);
      secondCard.removeEventListener('click', flipCard);
 
+     countCards();
      resetGame();
 }
 
@@ -97,6 +99,16 @@ function resetGame() {
     lockGame = false;
     firstCard = null;
     secondCard = null;
+}
+
+
+function countCards() {
+    openedCards.push(firstCard, secondCard);
+
+    if (openedCards.length === 16) {
+        alert('YOU WON!')
+    }
+
 }
 
 
