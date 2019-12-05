@@ -14,7 +14,9 @@ const duplicateCards = [...cards, ...cards];
 
 const memoryGame = document.querySelector(".memory-game");
 const button = document.querySelector("button");
+const clickCounter = document.querySelector(".click-counter");
 
+let count = 0;
 let isFlipped = false;
 let lockGame = false;
 let firstCard, secondCard;
@@ -98,10 +100,17 @@ const shuffle = array => {
     return array;
 }
 
+// FUNCTION THAT COUNTS CLICKS INSIDE MEMORY CONTAINER
+const countFunction = () => {
+    count += 1;
+    clickCounter.innerHTML = count;
+};
+
 
 const start = () => {
     shuffle(duplicateCards);
     generateCards();
+    memoryGame.addEventListener('click', countFunction);
     const memoryCards = document.querySelectorAll(".memory-card");
     
     memoryCards.forEach(memoryCard => {
