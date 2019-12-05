@@ -17,15 +17,30 @@ const startScreen = document.querySelector(".start-screen");
 const startButton = document.querySelector(".start-button");
 const restartButton = document.querySelector(".start-over");
 const clickCounter = document.querySelector(".click-counter");
+const timer = document.getElementById("timer");
 
+let seconds = 0;
+let tenthSeconds =  0;
 let count = 0;
 let isFlipped = false;
 let lockGame = false;
 let firstCard, secondCard;
 
 
+function countTimer() {
+    tenthSeconds++
+
+    if (tenthSeconds/10 === 1){
+        seconds++;
+        tenthSeconds = 0;
+    }
+
+   timer.innerHTML = seconds + "." + tenthSeconds;
+}
+
 // Function that flips the cards
 function flipCard() {
+
     if (lockGame) return;
     if (this === firstCard) return; 
 
@@ -109,7 +124,6 @@ const countFunction = () => {
     clickCounter.innerHTML = count;
 };
 
-
 const start = () => {
     shuffle(duplicateCards);
     generateCards();
@@ -119,18 +133,17 @@ const start = () => {
     memoryCards.forEach(memoryCard => {
         memoryCard.addEventListener("click", flipCard);
     });
-    
+
+    setInterval(countTimer, 100);
 }
 
-start();
-
-
-function startGame(event) {
+const startGame = () => {
     startScreen.classList.add('fadeOut');
+    start();
 }
+
 
 startButton.addEventListener('click', startGame);
-
 
 restartButton.addEventListener('click', function() {
     console.log('test')
