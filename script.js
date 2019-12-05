@@ -13,13 +13,50 @@ const cards = [
 const duplicateCards = [...cards, ...cards];
 
 const memoryGame = document.querySelector(".memory-game");
+const button = document.querySelector("button");
+
+let isFlipped = false;
+let lockGame = false;
+let firstCard, secondCard;
 
 
 // Function that flips the cards
 function flipCard() {
-    this.classList.toggle('flip');
-}
+    if (lockGame) return;
+    if (this === firstCard) return; 
 
+    this.classList.toggle('flip');
+
+    if (!isFlipped) {
+        // First click
+    
+        isFlipped = true;
+        firstCard = this;
+    } else {
+        // Second click
+    
+        isFlipped = false;
+        secondCard = this;
+ 
+        if(firstCard.dataset.id === secondCard.dataset.id) {
+            // If the cards id match remove flipCard-function
+
+            firstCard.removeEventListener('click', flipCard);
+            secondCard.removeEventListener('click', flipCard);
+        } else {
+            // If there's no match, remove 'flip'
+
+            lockGame = true; 
+
+            setTimeout(() => {
+                firstCard.classList.remove('flip');
+                secondCard.classList.remove('flip');
+                lockGame = false; 
+            }, 1500);
+        }
+    }
+
+}
 
 const stringToHTML = str => {
     const div = document.createElement("div");
@@ -38,17 +75,13 @@ const generateCards = () => {
     duplicateCards.forEach(card => {
         const element = createCard(card.id, card.image);
         memoryGame.appendChild(stringToHTML(element));
-
-        console.log(element);
         
     });
 };
 
 
-
-
 // Function that shuffles the cards array
-function shuffle(array) {
+const shuffle = array => {
     let counter = array.length, temp, index;
 
 // While there are elements in the array
@@ -70,12 +103,17 @@ const start = () => {
     shuffle(duplicateCards);
     generateCards();
     const memoryCards = document.querySelectorAll(".memory-card");
-
+    
     memoryCards.forEach(memoryCard => {
         memoryCard.addEventListener("click", flipCard);
-      });
-
+    });
+    
 }
 
-
 start();
+
+
+
+button.addEventListener("click", function() {
+ console.log('hello');
+});
