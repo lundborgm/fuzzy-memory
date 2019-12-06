@@ -134,6 +134,30 @@ const generateCards = () => {
 };
 
 
+
+// const listItems = [
+//     { name: 'Marimekko', title: 'Unikko' },
+//     { name: 'Stig Lindberg', title: 'hej' },
+//     { name: 'Inez Svensson', title: 'hellooo' },
+//     { name: 'Josef Frank', title: 'tjena' },
+// ];
+// const ulList = document.querySelector(".list");
+
+
+// const createList = (name, title) => {
+//     return `<li>${name}, by ${title}</li>`;
+// };
+
+// const generateList = () => {
+//     listItems.forEach(listItem => {
+//         const item = createList(listItem.name, listItem.title);
+//         ulList.appendChild(stringToHTML(item));
+
+//         console.log(item)
+//     });
+// };
+
+
 // Shuffles array
 const shuffle = array => {
     let counter = array.length, temp, index;
@@ -154,7 +178,11 @@ const shuffle = array => {
 
 
 // Click-counter function
-const countFunction = () => {
+const countMoves = () => {
+
+    if (lockGame === true){
+        return;
+    }
     count += 1;
     clickCounter.innerHTML = count;
 };
@@ -162,7 +190,8 @@ const countFunction = () => {
 const start = () => {
     shuffle(duplicateCards);
     generateCards();
-    memoryGame.addEventListener('click', countFunction);
+    // generateList();
+    memoryGame.addEventListener('click', countMoves);
     const memoryCards = document.querySelectorAll(".memory-card");
     
     memoryCards.forEach(memoryCard => {
@@ -181,7 +210,4 @@ const startGame = () => {
 
 startButton.addEventListener('click', startGame);
 
-restartButton.addEventListener('click', function() {
-    console.log('test')
-});
-
+restartButton.addEventListener('click', start);
