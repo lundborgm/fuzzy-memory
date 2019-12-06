@@ -31,7 +31,6 @@ let playing = false;
 
 
 function countTimer() {
-
     if (playing) { 
     tenthSeconds++
 
@@ -42,6 +41,8 @@ function countTimer() {
         timer.innerHTML = seconds + "." + tenthSeconds;
     }
 }
+
+setInterval(countTimer, 100);
 
 // Function that flips the cards
 function flipCard() {
@@ -214,14 +215,25 @@ start();
 const startGame = () => {
     startScreen.classList.add('fadeOut');
     memoryContainer.classList.remove('blur');
-    setInterval(countTimer, 100);
-}
-
-const startOver = () => {
-    shuffle(duplicateCards);
-    
 }
 
 startButton.addEventListener('click', startGame);
 
-restartButton.addEventListener('click', startOver);
+
+
+// Clear the memory board and sets values to 0
+const clearBoard = () => {
+    memoryGame.innerHTML = '';
+    clickCounter.innerHTML = '0';
+    timer.innerHTML = '0.0';
+    seconds = 0;
+    tenthSeconds = 0;
+    count = 0;
+}
+
+restartButton.addEventListener('click', () => { 
+    playing = false;
+    clearBoard();
+    start();
+});
+
