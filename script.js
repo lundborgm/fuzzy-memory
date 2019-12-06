@@ -18,6 +18,8 @@ const memoryGame = document.querySelector(".memory-game");
 const startScreen = document.querySelector(".start-screen");
 const startButton = document.querySelector(".start-button");
 const restartButton = document.querySelector(".start-over");
+const score = document.querySelector(".score");
+const playAgain = document.querySelector(".play-again");
 const clickCounter = document.querySelector(".click-counter");
 const timer = document.getElementById("timer");
 
@@ -43,6 +45,7 @@ function countTimer() {
 }
 
 setInterval(countTimer, 100);
+// clearInterval(countTimer, 100);
 
 // Function that flips the cards
 function flipCard() {
@@ -96,7 +99,7 @@ function unflipCards() {
 
         resetGame();
 
-    }, 1500);
+    }, 1200);
 }
 
 function resetGame() {
@@ -106,7 +109,6 @@ function resetGame() {
     secondCard = null;
 }
 
-
 function countCards() {
     openedCards.push(firstCard, secondCard);
 
@@ -115,12 +117,13 @@ function countCards() {
         playing = false; 
        
         setTimeout(() => {
-            window.alert(`YAY you won! Time: ${seconds}.${tenthSeconds}, Moves: ${count}`);
+            score.style.display = "block";
+
+            // window.alert(`YAY you won! Time: ${seconds}.${tenthSeconds}, Moves: ${count}`);
         }, 1000)
     }
 
 }
-
 
 const stringToHTML = str => {
     const div = document.createElement("div");
@@ -231,9 +234,17 @@ const clearBoard = () => {
     count = 0;
 }
 
+// Restart the game while playing
 restartButton.addEventListener('click', () => { 
     playing = false;
     clearBoard();
     start();
 });
 
+// Play again when game is finished
+playAgain.addEventListener('click', () => { 
+    playing = false;
+    score.classList.add('fadeOut');
+    clearBoard();
+    start();
+});
