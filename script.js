@@ -27,21 +27,25 @@ let count = 0;
 let isFlipped = false;
 let lockGame = false;
 let firstCard, secondCard;
+let playing = false;
 
 
 function countTimer() {
+
+    if (playing) { 
     tenthSeconds++
 
-    if (tenthSeconds/10 === 1){
-        seconds++;
-        tenthSeconds = 0;
+        if (tenthSeconds/10 === 1){
+            seconds++;
+            tenthSeconds = 0;
+        }
+        timer.innerHTML = seconds + "." + tenthSeconds;
     }
-
-   timer.innerHTML = seconds + "." + tenthSeconds;
 }
 
 // Function that flips the cards
 function flipCard() {
+    playing = true;
     if (lockGame) return;
     if (this === firstCard) return; 
 
@@ -106,7 +110,12 @@ function countCards() {
     openedCards.push(firstCard, secondCard);
 
     if (openedCards.length === 16) {
-        alert('YOU WON!')
+
+        playing = false; 
+       
+        setTimeout(() => {
+            window.alert(`YAY you won! Time: ${seconds}.${tenthSeconds}, Moves: ${count}`);
+        }, 1000)
     }
 
 }
@@ -208,6 +217,11 @@ const startGame = () => {
     setInterval(countTimer, 100);
 }
 
+const startOver = () => {
+    shuffle(duplicateCards);
+    
+}
+
 startButton.addEventListener('click', startGame);
 
-restartButton.addEventListener('click', start);
+restartButton.addEventListener('click', startOver);
