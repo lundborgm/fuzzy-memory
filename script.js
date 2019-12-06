@@ -19,6 +19,9 @@ const startScreen = document.querySelector(".start-screen");
 const startButton = document.querySelector(".start-button");
 const restartButton = document.querySelector(".start-over");
 const score = document.querySelector(".score");
+const scoreBoard = document.querySelector(".score-board");
+const completeMoves = document.querySelector(".complete-moves");
+const completeTime = document.querySelector(".complete-time");
 const playAgain = document.querySelector(".play-again");
 const clickCounter = document.querySelector(".click-counter");
 const timer = document.getElementById("timer");
@@ -118,6 +121,8 @@ function countCards() {
        
         setTimeout(() => {
             score.style.display = "block";
+            completeTime.innerHTML = seconds + "." + tenthSeconds;
+            completeMoves.innerHTML = count;
 
             // window.alert(`YAY you won! Time: ${seconds}.${tenthSeconds}, Moves: ${count}`);
         }, 1000)
