@@ -21,7 +21,8 @@ Clone down the project to you computer:
 ## Testers
 
 Mikaela Lundsgård<br>
-Bernhard Stedt
+Bernhard Stedt<br>
+Emelie Petersson
 
 ## Code review
 
