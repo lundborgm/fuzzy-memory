@@ -127,7 +127,6 @@ function countCards() {
 
         }, 1000)
     }
-
 }
 
 const stringToHTML = str => {
