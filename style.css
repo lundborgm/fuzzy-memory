@@ -61,10 +61,10 @@ li {
     cursor: pointer;
 }
 
-.memory-card:hover {
+/* .memory-card:hover {
     transform: scale(.95);
     transition: transform .3s;
-}
+} */
 
 /* Flips card */
 .memory-card.flip {

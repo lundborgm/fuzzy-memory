@@ -17,7 +17,6 @@ const memoryContainer = document.querySelector(".memory-container");
 const memoryGame = document.querySelector(".memory-game");
 const startScreen = document.querySelector(".start-screen");
 const startButton = document.querySelector(".start-button");
-const restartButton = document.querySelector(".start-over");
 const score = document.querySelector(".score");
 const scoreBoard = document.querySelector(".score-board");
 const completeMoves = document.querySelector(".complete-moves");
@@ -115,7 +114,7 @@ function resetGame() {
 function countCards() {
     openedCards.push(firstCard, secondCard);
 
-    if (openedCards.length === 16) {
+    if (openedCards.length === 4) {
 
         playing = false; 
        
@@ -124,7 +123,6 @@ function countCards() {
             completeTime.innerHTML = seconds + "." + tenthSeconds;
             completeMoves.innerHTML = count;
 
-            // window.alert(`YAY you won! Time: ${seconds}.${tenthSeconds}, Moves: ${count}`);
         }, 1000)
     }
 
@@ -150,30 +148,6 @@ const generateCards = () => {
         
     });
 };
-
-
-
-// const listItems = [
-//     { name: 'Marimekko', title: 'Unikko' },
-//     { name: 'Stig Lindberg', title: 'hej' },
-//     { name: 'Inez Svensson', title: 'hellooo' },
-//     { name: 'Josef Frank', title: 'tjena' },
-// ];
-// const ulList = document.querySelector(".list");
-
-
-// const createList = (name, title) => {
-//     return `<li>${name}, by ${title}</li>`;
-// };
-
-// const generateList = () => {
-//     listItems.forEach(listItem => {
-//         const item = createList(listItem.name, listItem.title);
-//         ulList.appendChild(stringToHTML(item));
-
-//         console.log(item)
-//     });
-// };
 
 
 // Shuffles array
@@ -208,7 +182,6 @@ const countMoves = () => {
 const start = () => {
     shuffle(duplicateCards);
     generateCards();
-    // generateList();
     memoryGame.addEventListener('click', countMoves);
     const memoryCards = document.querySelectorAll(".memory-card");
     
@@ -228,7 +201,6 @@ const startGame = () => {
 startButton.addEventListener('click', startGame);
 
 
-
 // Clear the memory board and sets values to 0
 const clearBoard = () => {
     memoryGame.innerHTML = '';
@@ -239,17 +211,15 @@ const clearBoard = () => {
     count = 0;
 }
 
-// Restart the game while playing
-restartButton.addEventListener('click', () => { 
-    playing = false;
-    clearBoard();
-    start();
-});
 
 // Play again when game is finished
 playAgain.addEventListener('click', () => { 
-    playing = false;
-    score.classList.add('fadeOut');
+    // playing = false;
+    // let openedCards = [];
+    // score.classList.add('fadeOut');
+    score.style.display = "none";
     clearBoard();
     start();
+    checkPair();
+    countCards();
 });
