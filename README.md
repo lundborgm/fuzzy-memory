@@ -6,11 +6,11 @@ Create a memory game entirely in HTML, CSS and JavaScript.
 
 ## Installing
 
-* Clone down the project to you computer:
-- $ git clone https://github.com/lundborgm/fuzzy-memory.git
-- Open the index.html file in your browser.
+Clone down the project to you computer:
+* $ git clone https://github.com/lundborgm/fuzzy-memory.git
+* Open the index.html file in your browser.
 
-* Or visit https://pattern-memory.netlify.com/
+... Or visit https://pattern-memory.netlify.com/
 
 ## Built with
 
