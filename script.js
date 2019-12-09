@@ -22,12 +22,12 @@ const completeMoves = document.querySelector(".complete-moves");
 const completeTime = document.querySelector(".complete-time");
 const playAgain = document.querySelector(".play-again");
 const clickCounter = document.querySelector(".click-counter");
-const timer = document.getElementById("timer");
+const timer = document.querySelector(".timer");
 
 let flippedCards = [];
 let seconds = 0;
 let tenthSeconds = 0;
-let count = 0;
+let moves = 0;
 let isFlipped = false;
 let lockGame = false;
 let firstCard, secondCard;
@@ -46,7 +46,6 @@ function countTimer() {
 }
 
 setInterval(countTimer, 100);
-// clearInterval(countTimer, 100);
 
 // Function that flips the cards
 function flipCard() {
@@ -79,7 +78,7 @@ function checkPair() {
   }
 }
 
-// If there's a match remove click-function
+// If there's a match remove click function
 function disableCards() {
   firstCard.removeEventListener("click", flipCard);
   secondCard.removeEventListener("click", flipCard);
@@ -110,23 +109,16 @@ function resetGame() {
 function countCards() {
   flippedCards.push(firstCard, secondCard);
 
-  if (flippedCards.length === 6) {
-    console.log(flippedCards);
-
+  if (flippedCards.length === 16) {
     playing = false;
 
     setTimeout(() => {
-      score.style.display = "block";
+      score.classList.add("fadeIn");
+      memoryContainer.classList.add("blur");
       completeTime.innerHTML = seconds + "." + tenthSeconds;
-      completeMoves.innerHTML = count;
+      completeMoves.innerHTML = moves;
     }, 1000);
   }
-}
-
-function stringToHTML(str) {
-  const div = document.createElement("div");
-  div.innerHTML = str;
-  return div.firstChild;
 }
 
 function createCard(id, image) {
@@ -139,7 +131,7 @@ function createCard(id, image) {
 function generateCards() {
   duplicateCards.forEach(card => {
     const element = createCard(card.id, card.image);
-    memoryGame.appendChild(stringToHTML(element));
+    memoryGame.innerHTML += element;
   });
 }
 
@@ -168,8 +160,8 @@ function countMoves() {
   if (lockGame === true) {
     return;
   }
-  count += 1;
-  clickCounter.innerHTML = count;
+  moves += 1;
+  clickCounter.innerHTML = moves;
 }
 
 function start() {
@@ -201,7 +193,9 @@ function clearBoard() {
   tenthSeconds = 0;
   count = 0;
   flippedCards = [];
-  score.style.display = "none";
+  score.classList.remove("fadeIn");
+  score.classList.add("fadeOut");
+  memoryContainer.classList.remove("blur");
 }
 
 // Play again when game is finished
