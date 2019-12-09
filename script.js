@@ -35,7 +35,7 @@ let playing = false;
 
 
 function countTimer() {
-    if (playing) { 
+    if (playing) {
     tenthSeconds++
 
         if (tenthSeconds/10 === 1){
@@ -53,19 +53,19 @@ setInterval(countTimer, 100);
 function flipCard() {
     playing = true;
     if (lockGame) return;
-    if (this === firstCard) return; 
+    if (this === firstCard) return;
 
     this.classList.toggle('flip');
 
     if (!isFlipped) {
         // First click
-    
+
         isFlipped = true;
         firstCard = this;
 
     } else {
         // Second click
-    
+
         secondCard = this;
 
         checkPair();
@@ -93,7 +93,7 @@ function disableCards() {
 
  // If there's no match, remove 'flip'
 function unflipCards() {
-    lockGame = true; 
+    lockGame = true;
 
     setTimeout(() => {
         firstCard.classList.remove('flip');
@@ -118,8 +118,8 @@ function countCards() {
 
         console.log(openedCards);
 
-        playing = false; 
-       
+        playing = false;
+
         setTimeout(() => {
             score.style.display = "block";
             completeTime.innerHTML = seconds + "." + tenthSeconds;
@@ -129,30 +129,30 @@ function countCards() {
     }
 }
 
-const stringToHTML = str => {
+function stringToHTML(str) {
     const div = document.createElement("div");
     div.innerHTML = str;
         return div.firstChild;
 };
 
-const createCard = (id, image) => {
+function createCard(id, image) {
     return `<div class="memory-card" data-id=${id}>
                 <img class="front" src=${image} alt="">
                 <img class="back" src="" alt="">
             </div>`;
 };
 
-const generateCards = () => {
+function generateCards () {
     duplicateCards.forEach(card => {
         const element = createCard(card.id, card.image);
         memoryGame.appendChild(stringToHTML(element));
-        
+
     });
 };
 
 
 // Shuffles array
-const shuffle = array => {
+function shuffle(array) {
     let counter = array.length, temp, index;
 
 // While there are elements in the array
@@ -171,7 +171,7 @@ const shuffle = array => {
 
 
 // Click-counter function
-const countMoves = () => {
+function countMoves() {
 
     if (lockGame === true){
         return;
@@ -180,12 +180,12 @@ const countMoves = () => {
     clickCounter.innerHTML = count;
 };
 
-const start = () => {
+function start() {
     shuffle(duplicateCards);
     generateCards();
     memoryGame.addEventListener('click', countMoves);
     const memoryCards = document.querySelectorAll(".memory-card");
-    
+
     memoryCards.forEach(memoryCard => {
         memoryCard.addEventListener("click", flipCard);
     });
@@ -194,7 +194,7 @@ const start = () => {
 
 start();
 
-const startGame = () => {
+function startGame() {
     startScreen.classList.add('fadeOut');
     memoryContainer.classList.remove('blur');
 }
@@ -203,7 +203,7 @@ startButton.addEventListener('click', startGame);
 
 
 // Clear the memory board and sets values to 0
-const clearBoard = () => {
+function clearBoard() {
     memoryGame.innerHTML = '';
     clickCounter.innerHTML = '0';
     timer.innerHTML = '0.0';
@@ -216,8 +216,8 @@ const clearBoard = () => {
 
 
 // Play again when game is finished
-playAgain.addEventListener('click', () => { 
+playAgain.addEventListener('click', () => {
     clearBoard();
     start();
-    countCards();
+    // countCards();
 });
