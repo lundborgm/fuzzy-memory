@@ -191,7 +191,7 @@ function clearBoard() {
   timer.innerHTML = "0.0";
   seconds = 0;
   tenthSeconds = 0;
-  count = 0;
+  moves = 0;
   flippedCards = [];
   score.classList.remove("fadeIn");
   score.classList.add("fadeOut");
