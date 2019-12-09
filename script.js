@@ -116,6 +116,8 @@ function countCards() {
 
     if (openedCards.length === 4) {
 
+        console.log(openedCards);
+
         playing = false; 
        
         setTimeout(() => {
@@ -209,17 +211,14 @@ const clearBoard = () => {
     seconds = 0;
     tenthSeconds = 0;
     count = 0;
+    openedCards = [];
+    score.style.display = "none";
 }
 
 
 // Play again when game is finished
 playAgain.addEventListener('click', () => { 
-    // playing = false;
-    // let openedCards = [];
-    // score.classList.add('fadeOut');
-    score.style.display = "none";
     clearBoard();
     start();
-    checkPair();
     countCards();
 });

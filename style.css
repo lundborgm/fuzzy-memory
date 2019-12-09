@@ -22,15 +22,6 @@ p {
     font-size: 14px;
 }
 
-.list {
-    margin-left: 20px;
-    list-style: circle;
-}
-
-li {
-    font-size: 14px;
-}
-
 .memory-container {
     display: flex;
 }
@@ -60,11 +51,6 @@ li {
     transition: transform 1s;
     cursor: pointer;
 }
-
-/* .memory-card:hover {
-    transform: scale(.95);
-    transition: transform .3s;
-} */
 
 /* Flips card */
 .memory-card.flip {
@@ -144,15 +130,7 @@ li {
     opacity: 1;
     display: none;
     /* transition: opacity 2s linear; */
-    animation-name: animatetop;
-    animation-duration: 0.4s
 }
-
-/* Add Animation */
-/* @keyframes animatetop {
-from {top: -300px; opacity: 0}
-to {top: 0; opacity: 1}
-} */
 
 .score-board {
     display: flex;
