@@ -33,6 +33,7 @@ let lockGame = false;
 let firstCard, secondCard;
 let playing = false;
 
+// Timer function, starts when playing = true
 function countTimer() {
   if (playing) {
     tenthSeconds++;
