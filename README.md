@@ -12,6 +12,10 @@ Clone down the project to you computer:
 
 ... Or visit https://pattern-memory.netlify.com/
 
+## Preview
+
+<img src="img/memory-screenshot.png">
+
 ## Built with
 
 * HTML
